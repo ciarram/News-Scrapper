@@ -1,0 +1,21 @@
+body{
+    background-image: url("img/bundle-1853667_1920.jpg");
+}
+nav{
+    background-color: #B4D0DB;
+    margin-top: 5px;
+}
+a.navbar{
+    color: #F3F0F0;
+}
+.jumbotron{
+    background-color: #31686E;
+    margin-top: 10px;
+}
+h1, p{
+    text-align: center;
+    color: #F3F0F0;
+}
+#container{
+    border: black solid 1px;
+}
