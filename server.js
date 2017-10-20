@@ -83,9 +83,9 @@ db.on("error", function(error) {
     })
   
     // Log the results once you've looped through each of the elements found with cheerio
-    console.log(urls);
-    console.log(headlines);
-    console.log(summary);
+    // console.log(urls);
+    // console.log(headlines);
+    // console.log(summary);
   });
 
   // Send a "Scrape Complete" message to the browser
@@ -93,7 +93,7 @@ db.on("error", function(error) {
 // });
 
 
-// Listen on port 3000
-// app.listen(port, function() {
-//   console.log("http://localhost:" + port);
-// });
+//Listen on port 3000
+app.listen(port, function() {
+  console.log("http://localhost:" + port);
+});
