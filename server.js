@@ -37,21 +37,26 @@ app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("https://www.nytimes.com/section/world?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=World&WT.nav=page", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(response.data);
+    var $ = cheerio.load(html);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("div.story-body").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-        .children("a")
+        .children("h2")
         .text();
+        console.log("Title " + result.title)
       result.link = $(this)
         .children("a")
         .attr("href");
-
+        console.log("link " + result.link);
+        result.summary = $(this)
+        .children("p")
+        .text();
+        console.log("Summary " + result.summary);
       // Create a new Article using the `result` object built from scraping
       db.Article
         .create(result)
