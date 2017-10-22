@@ -2,10 +2,10 @@ body{
     background-image: url("img/bundle-1853667_1920.jpg");
 }
 nav{
-    background-color: #B4D0DB;
+    background-color: #499CA3;
     margin-top: 5px;
 }
-a.navbar{
+.nav-link{
     color: #F3F0F0;
 }
 .jumbotron{
@@ -16,6 +16,14 @@ h1, p{
     text-align: center;
     color: #F3F0F0;
 }
-/* #container{
-    border: black solid 1px;
-} */
+
+.card{
+    background-color: #499CA3;
+    color:#F3F0F0;
+    border: #302F2F 1px;
+    border-style: groove;
+}
+.btn{
+    background-color: #6FEEFA;
+    float: right;
+}
