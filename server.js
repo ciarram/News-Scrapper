@@ -32,7 +32,6 @@ app.get("/", function(req, res){
   res.render("index");
 })
 
-// A GET route for scraping the echojs website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("https://www.nytimes.com/section/world?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=World&WT.nav=page", function(error, response, html) {
@@ -42,7 +41,6 @@ app.get("/scrape", function(req, res) {
     $("div.story-meta").each(function(i, element) {
       // Save an empty result object
       var result = {};
-      // Add the text and href of every link, and save them as properties of the result object
       result.link = $(this).parent("a").attr("href");
         console.log("link " + result.link);
       result.title = $(this).children("h2.headline").text();
@@ -67,8 +65,7 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   db.Headlines
-    .find({})
-    .then(function(dbHeadlines) {
+    .find({}).then(function(dbHeadlines) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbHeadlines);
     })
@@ -77,6 +74,37 @@ app.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+
+app.post("/save", function(req, res) {
+  
+    console.log("This is the title: " + req.body.title);
+  
+    var newHeadline = {};
+  
+    newHeadline.title = req.body.title;
+  
+    newHeadline.link = req.body.link;
+
+    newHeadline.summary = req.body.summary;
+
+    var entry = new Headlines(newHeadline);
+  
+    console.log("We can save the article: " + entry);
+  
+    // Now, save that entry to the db
+    entry.save(function(err, doc) {
+      // Log any errors
+      if (err) {
+        console.log(err);
+      }
+      // Or log the doc
+      else {
+        console.log(doc);
+      }
+    });
+  
+    res.redirect("/savedarticles");
+  });
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
