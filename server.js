@@ -12,6 +12,8 @@ var uri = 'mongodb://ciarra:mpw4hiaa@ds129315.mlab.com:29315/heroku_t5c18vsh';
 var databaseUrl = "news";
 var collections = ["stories"];
 var db = require("./models")
+// var headlines = require("./models/headlines.js");
+// var notes = require("./models/notes.js");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
@@ -25,6 +27,15 @@ app.set("view engine", "handlebars");
 mongoose.Promise = Promise;
 mongoose.connect(uri);
 
+if (process.env.MONGODB_URI){
+  mongoose.connect(process.env.MONGODB_URI)
+}else{
+  mongoose.connect("mongodb://localhost/news", {
+      useMongoClient: true
+  })
+}
+
+// var db = mongoose.connection;
 
 // Routes
 
