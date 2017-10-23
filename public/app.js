@@ -10,7 +10,7 @@ $(document).ready(function(){
             $(".saved").on("click", function(event){
                 console.log("clicked on save");
                 //(".card").empty();
-                $.post("/articles").done(function(data){
+                $.post("/save").done(function(data){
                     window.location.reload();
                 })
             })

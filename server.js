@@ -78,36 +78,23 @@ app.get("/save", function(req, res){
     res.render("saved");
 })
 
-app.post("/articles", function(req, res) {
+app.post("/save", function(req, res) {
+  //this references the Articles schema
+    var newResults = {};
   
-    console.log("Article: " + req.body);
-  
-    // var newHeadline = {};
-  
-    // newHeadline.title = req.body.title;
-  
-    // // newHeadline.link = req.body.link;
+    newResults.link = req.body.link;
+    newResults.summary = req.body.summary;
+    newResults.title = req.body.title;
 
-    // newHeadline.summary = req.body.summary;
+      db.Headlines.create(newResults).then(function(dbArticle) {
+      res.redirect("/scrape");
 
-    // var entry = new db.Headlines (req.body);
-  
-    // console.log("We can save the article: " + entry);
-  
-    // // Now, save that entry to the db
-    // entry.save(function(err, doc) {
-    //   // Log any errors
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   // Or log the doc
-    //   else {
-    //     console.log(doc);
-    //   }
-    // });
-  
-    //  res.redirect("/save");
-  });
+      console.log("YES", newResults);
+    })
+    .catch(function(err) {
+    res.json(err);
+  })
+  })
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
