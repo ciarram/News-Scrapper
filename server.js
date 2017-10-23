@@ -74,8 +74,11 @@ app.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+app.get("/save", function(req, res){
+    res.render("saved");
+})
 
-app.post("/save", function(req, res) {
+app.post("/articles", function(req, res) {
   
     console.log("This is the title: " + req.body.title);
   
@@ -83,11 +86,11 @@ app.post("/save", function(req, res) {
   
     newHeadline.title = req.body.title;
   
-    newHeadline.link = req.body.link;
+    // newHeadline.link = req.body.link;
 
     newHeadline.summary = req.body.summary;
 
-    var entry = new Headlines(newHeadline);
+    var entry = new db.Headlines (newHeadline);
   
     console.log("We can save the article: " + entry);
   
@@ -103,7 +106,7 @@ app.post("/save", function(req, res) {
       }
     });
   
-    res.redirect("/savedarticles");
+     res.redirect("/save");
   });
 
 // Route for grabbing a specific Article by id, populate it with it's note
