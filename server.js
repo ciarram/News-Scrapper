@@ -80,33 +80,33 @@ app.get("/save", function(req, res){
 
 app.post("/articles", function(req, res) {
   
-    console.log("This is the title: " + req.body.title);
+    console.log("Article: " + req.body);
   
-    var newHeadline = {};
+    // var newHeadline = {};
   
-    newHeadline.title = req.body.title;
+    // newHeadline.title = req.body.title;
   
-    // newHeadline.link = req.body.link;
+    // // newHeadline.link = req.body.link;
 
-    newHeadline.summary = req.body.summary;
+    // newHeadline.summary = req.body.summary;
 
-    var entry = new db.Headlines (newHeadline);
+    // var entry = new db.Headlines (req.body);
   
-    console.log("We can save the article: " + entry);
+    // console.log("We can save the article: " + entry);
   
-    // Now, save that entry to the db
-    entry.save(function(err, doc) {
-      // Log any errors
-      if (err) {
-        console.log(err);
-      }
-      // Or log the doc
-      else {
-        console.log(doc);
-      }
-    });
+    // // Now, save that entry to the db
+    // entry.save(function(err, doc) {
+    //   // Log any errors
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   // Or log the doc
+    //   else {
+    //     console.log(doc);
+    //   }
+    // });
   
-     res.redirect("/save");
+    //  res.redirect("/save");
   });
 
 // Route for grabbing a specific Article by id, populate it with it's note
