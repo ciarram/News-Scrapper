@@ -7,6 +7,7 @@ var cheerio = require('cheerio');
 
 var app = express();
 var port = process.env.port || 3000;
+var uri = 'mongodb://heroku_t5c18vsh:aq9gpo9s45pt98s60cdeumjh4p@ds129315.mlab.com:29315/heroku_t5c18vsh';
 
 var databaseUrl = "news";
 var collections = ["stories"];
@@ -22,9 +23,7 @@ app.set("view engine", "handlebars");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/news", {
-  useMongoClient: true
-});
+mongoose.connect(uri);
 
 // Routes
 
