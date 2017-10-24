@@ -6,7 +6,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 var app = express();
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 var uri = 'mongodb://ciarra:mpw4hiaa@ds129315.mlab.com:29315/heroku_t5c18vsh';
 
 var databaseUrl = "news";
